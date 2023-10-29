@@ -209,7 +209,7 @@ public class Board {
 	 * is successful, the method will return true and the board will be modified to have the first found solution. If
 	 * it is false, the method will return false and the board will be in it's original state when the method was
 	 * called. WARNING: Calling this method on Boards with dimension greater than 10 may have a long runtime,
-	 * as the time and memory complexity of the backtracking algorithm is O(n^2).
+	 * as the time and memory complexity of the backtracking algorithm is O(2^n).
 	 * 
 	 * @return true if the method succeeded in placing n queens onto the board, false if it was not possible to place
 	 * n queens onto the current board.
@@ -264,13 +264,18 @@ public class Board {
 		}
 	}
 
-
+	/** Determines the number of permutations in which n queens can be placed on the board based on the
+ 	 *  dimension. This method uses a helper method to recursively attempt new solutions and backtrack
+   	 *  to previous queen placements on the board to find all solutions.
+     	 *
+       	 *  @return The number of permutations allowed by the current board.
+ 	 */
 	public int getNumCombinations() {
 
 		return getNumCombinationsHelper(0);
 
 	}
-
+ 	
 	private int getNumCombinationsHelper(int row) {
 
 		if (this.numQueens == this.size) {
@@ -303,7 +308,7 @@ public class Board {
 		return count;
 	}
 
-	/** Returns a String representation of the current Board.
+	/** Returns a String representation of the current Board's contents.
 	 */
 	@Override
 	public String toString() {
